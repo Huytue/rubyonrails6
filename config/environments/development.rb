@@ -39,6 +39,18 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
+   # set delivery method to :smtp, :sendmail or :test
+   config.action_mailer.delivery_method = :smtp
+   config.action_mailer.smtp_settings = {
+     address: "smtp.gmail.com",
+     port: 587,
+     domain: "localhost:3000",
+     authentication: "plain", 
+     user_name: "bachvonam1997@gmail.com", 
+     password: "Tue851995", 
+     enable_starttls_auto: true
+   }
+
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
@@ -56,17 +68,8 @@ Rails.application.configure do
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
-  config.action_mailer.delivery_method = :smtp
-  
-  config.action_mailer.smtp_settings = {
-      :address => 'smtp.gmail.com',
-      :port => 587,
-      :domain => 'domain.of.sender.net',
-      :authentication => 'plain',
-      :user_name => 'huytue',
-      :password => 'secret',
-      :enable_starttls_auto => true
-  }
+  config.action_mailer.default_url_options = { :host => 'abc.com' }
+
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
@@ -74,5 +77,6 @@ Rails.application.configure do
 
   config.action_cable.disable_request_forgery_protection = true
 
+  config.active_storage.service = :local
 
 end
